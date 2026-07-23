@@ -30,3 +30,5 @@ app.post('/api/signup', (req, res) => {
     email: email,       // Store user's email address
     password: password  // Store password (in real production, always hash with bcrypt!)
   };
+
+    usersDb.push(newUser);
