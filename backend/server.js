@@ -13,3 +13,5 @@ const usersDb = []
 
 app.post('/api/signup', (req, res) => {
     const { fullName, email, password } = req.body;
+
+    if (!fullName || !email || !password) {
