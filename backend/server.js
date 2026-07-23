@@ -10,3 +10,5 @@ app.use(cors())
 app.use(express.json());
 
 const usersDb = []
+
+app.post('/api/signup', (req, res) => {
