@@ -4,3 +4,4 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
 const app = express();
+const JWT_SECRET = 'fakebook-super-secret-key-2026';
