@@ -35,3 +35,4 @@ app.post('/api/signup', (req, res) => {
 
 
 app.post('/api/login', (req, res) => {
+    const { email, password } = req.body;
