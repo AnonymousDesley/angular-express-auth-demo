@@ -21,3 +21,12 @@ app.post('/api/signup', (req, res) => {
   const existingUser = usersDb.find((user) => user.email === email);
 
   if (existingUser) {
+    return res.status(400).json({ message: 'An account with this email already exists!' });
+  }
+
+  const newUser = {
+    id: Date.now(),      // Assign a unique ID using the current timestamp
+    fullName: fullName, // Store user's full name
+    email: email,       // Store user's email address
+    password: password  // Store password (in real production, always hash with bcrypt!)
+  };
