@@ -36,3 +36,31 @@ app.post('/api/signup', (req, res) => {
 
 app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
+    const user = usersDb.find((u) => u.email === email && u.password === password);
+
+  // If no matching user record is found, authentication fails
+  if (!user) {
+    // Return a 401 Unauthorized HTTP status
+    return res.status(401).json({ message: 'Invalid email or password!' });
+  }
+
+  // Generate a signed JWT token containing non-sensitive payload data
+  const token = jwt.sign(
+    { id: user.id, fullName: user.fullName, email: user.email }, // Token payload
+    JWT_SECRET,                                                 // Secret signing key
+    { expiresIn: '1h' }                                         // Token expiration duration
+  );
+
+  // Respond with a 200 OK status, returning the JWT token and basic user info
+  return res.json({
+    message: 'Login successful!',
+    token: token,
+    user: { id: user.id, fullName: user.fullName, email: user.email }
+  });
+});
+
+// Tell the Express application to listen on port 3000
+app.listen(3000, () => {
+  // Print a message to console indicating backend is running
+  console.log('Fakebook Backend active at http://localhost:3000');
+});
