@@ -7,3 +7,4 @@ const app = express();
 const JWT_SECRET = 'fakebook-super-secret-key-2026';
 
 app.use(cors())
+app.use(express.json());
