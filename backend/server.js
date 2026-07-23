@@ -19,3 +19,5 @@ app.post('/api/signup', (req, res) => {
   }
 
   const existingUser = usersDb.find((user) => user.email === email);
+
+  if (existingUser) {
